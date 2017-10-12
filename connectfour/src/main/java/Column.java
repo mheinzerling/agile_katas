@@ -1,43 +1,39 @@
-import java.util.Arrays;
-import java.util.List;
 
 class Column
 {
-	private final List<Token> tokenRows;
-	private       int         currentIndex;
+	private final Token[] tokenRows;
+	private final int     numberOfRows;
+	private       int     nextTokenHeight;
 
 	public Column(int numberOfRows)
 	{
-		this.tokenRows = Arrays.asList(new Token[numberOfRows]);
-		this.currentIndex = 0;
+		this.nextTokenHeight = 0;
+		this.numberOfRows = numberOfRows;
+		this.tokenRows = new Token[numberOfRows];
+
 	}
 
 	public int getNumberOfRows()
 	{
-		return tokenRows.size();
+		return numberOfRows;
 	}
 
 	public int place(Token token) throws FullColumnException
 	{
-		if( columnIsFull() ) throw new FullColumnException("Column is full!");
-		tokenRows.set(currentIndex, token);
-		currentIndex++;
-		return currentIndex - 1;
-	}
-
-	private boolean columnIsFull()
-	{
-		return currentIndex == tokenRows.size();
+		if( nextTokenHeight >= numberOfRows ) throw new FullColumnException("Column is full!");
+		tokenRows[nextTokenHeight] = token;
+		nextTokenHeight++;
+		return nextTokenHeight - 1;
 	}
 
 	public int getCurrentNumberOfTokens()
 	{
-		return currentIndex;
+		return nextTokenHeight;
 	}
 
-	public Token getColorOfTokenPlacedIn(int rowNumber)
+	public Token getToken(int row)
 	{
-		if( tokenRows.get(rowNumber) == null ) return Token.NONE;
-		return tokenRows.get(rowNumber);
+		if( tokenRows[row] == null ) return Token.NONE;
+		return tokenRows[row];
 	}
 }

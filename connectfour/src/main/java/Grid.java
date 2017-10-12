@@ -58,7 +58,7 @@ class Grid
 
 	private Token getColorOfTokenPlacedIn(int rowWhereTokenIsPlaced, int columnNumber)
 	{
-		return columns.get(columnNumber).getColorOfTokenPlacedIn(rowWhereTokenIsPlaced);
+		return columns.get(columnNumber).getToken(rowWhereTokenIsPlaced);
 	}
 
 	public Token[] getRowOfTokensAlong(int rowWhereTokenIsPlaced)
