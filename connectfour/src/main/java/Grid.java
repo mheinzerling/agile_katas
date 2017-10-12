@@ -13,26 +13,26 @@ class Grid
 			columns.add(new Column(numberOfRows));
 	}
 
-	public Color[] getRightDiagonalOfTokensAlong(int columnWhereTokenIsPlaced, int rowWhereTokenIsPlaced)
+	public Token[] getRightDiagonalOfTokensAlong(int columnWhereTokenIsPlaced, int rowWhereTokenIsPlaced)
 	{
-		Color[] colors = new Color[getNumberOfColumns()];
+		Token[] tokens = new Token[getNumberOfColumns()];
 		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced;
 			 rowNumber >= 0 && columnNumber < getNumberOfColumns(); rowNumber--, columnNumber++ )
-			colors[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
+			tokens[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
 		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced; rowNumber < getNumberOfRows() && columnNumber >= 0; rowNumber++, columnNumber-- )
-			colors[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
-		return colors;
+			tokens[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
+		return tokens;
 	}
 
-	public Color[] getLeftDiagonalOfTokensAlong(int columnWhereTokenIsPlaced, int rowWhereTokenIsPlaced)
+	public Token[] getLeftDiagonalOfTokensAlong(int columnWhereTokenIsPlaced, int rowWhereTokenIsPlaced)
 	{
-		Color[] colors = new Color[getNumberOfColumns()];
+		Token[] tokens = new Token[getNumberOfColumns()];
 		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced; rowNumber >= 0 && columnNumber >= 0; rowNumber--, columnNumber-- )
-			colors[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
+			tokens[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
 		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced;
 			 rowNumber < getNumberOfRows() && columnNumber < getNumberOfColumns(); rowNumber++, columnNumber++ )
-			colors[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
-		return colors;
+			tokens[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
+		return tokens;
 	}
 
 	public int put(Token token, int column)
@@ -46,29 +46,29 @@ class Grid
 		if( columnNumber < 0 || columnNumber >= columns.size() ) throw new NonexistentColumnException("Column does not exist");
 	}
 
-	public Color[] getColumnOfTokensAlong(int columnNumber)
+	public Token[] getColumnOfTokensAlong(int columnNumber)
 	{
-		Color[] colors = new Color[getNumberOfColumns()];
+		Token[] tokens = new Token[getNumberOfColumns()];
 		for( int rowNumber = 0; rowNumber < getNumberOfRows(); rowNumber++ )
 		{
-			colors[rowNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
+			tokens[rowNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
 		}
-		return colors;
+		return tokens;
 	}
 
-	private Color getColorOfTokenPlacedIn(int rowWhereTokenIsPlaced, int columnNumber)
+	private Token getColorOfTokenPlacedIn(int rowWhereTokenIsPlaced, int columnNumber)
 	{
 		return columns.get(columnNumber).getColorOfTokenPlacedIn(rowWhereTokenIsPlaced);
 	}
 
-	public Color[] getRowOfTokensAlong(int rowWhereTokenIsPlaced)
+	public Token[] getRowOfTokensAlong(int rowWhereTokenIsPlaced)
 	{
-		Color[] colors = new Color[getNumberOfColumns()];
+		Token[] tokens = new Token[getNumberOfColumns()];
 		for( int columnNumber = 0; columnNumber < getNumberOfColumns(); columnNumber++ )
 		{
-			colors[columnNumber] = getColorOfTokenPlacedIn(rowWhereTokenIsPlaced, columnNumber);
+			tokens[columnNumber] = getColorOfTokenPlacedIn(rowWhereTokenIsPlaced, columnNumber);
 		}
-		return colors;
+		return tokens;
 	}
 
 	public int getNumberOfTokensIn(int columnNumber)

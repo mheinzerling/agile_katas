@@ -15,8 +15,8 @@ public class GameTest
 		int numberOfRows = 6;
 		int numberOfColumns = 7;
 		game = new Game(numberOfRows, numberOfColumns);
-		player1Token = new Token(Color.BLUE);
-		player2Token = new Token(Color.YELLOW);
+		player1Token = Token.BLUE;
+		player2Token = Token.YELLOW;
 	}
 
 	@Test

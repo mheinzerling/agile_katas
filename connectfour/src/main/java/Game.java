@@ -15,7 +15,7 @@ class Game
 
 	private void checkIfGameIsOverByPlacingTokenIn(int columnNumber, int rowWhereTokenIsPlaced) throws GameIsOverException
 	{
-		Color[] connectingTokens = grid.getRowOfTokensAlong(rowWhereTokenIsPlaced);
+		Token[] connectingTokens = grid.getRowOfTokensAlong(rowWhereTokenIsPlaced);
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, columnNumber);
 		connectingTokens = grid.getColumnOfTokensAlong(columnNumber);
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, rowWhereTokenIsPlaced);
@@ -25,7 +25,7 @@ class Game
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, columnNumber);
 	}
 
-	private void checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(Color[] connectingTokensIncludingPlacedToken,
+	private void checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(Token[] connectingTokensIncludingPlacedToken,
 		int indexOfPlacedToken) throws GameIsOverException
 	{
 		final int LEFT = 1;
@@ -34,28 +34,28 @@ class Game
 		checkIfThereAreFourConnectingTokensOfSameColorOnSide(connectingTokensIncludingPlacedToken, indexOfPlacedToken, RIGHT);
 	}
 
-	private void checkIfThereAreFourConnectingTokensOfSameColorOnSide(Color[] rowOfTokensWhereTokenIsPlaced, int indexOfCurrentlyPlacedToken,
+	private void checkIfThereAreFourConnectingTokensOfSameColorOnSide(Token[] rowOfTokensWhereTokenIsPlaced, int indexOfCurrentlyPlacedToken,
 		int direction) throws GameIsOverException
 	{
 		int startingIndex = indexOfCurrentlyPlacedToken + 3 * -direction;
-		Color colorOfPlacedToken = rowOfTokensWhereTokenIsPlaced[indexOfCurrentlyPlacedToken];
+		Token tokenOfPlacedToken = rowOfTokensWhereTokenIsPlaced[indexOfCurrentlyPlacedToken];
 		int numberOfTokensHavingTheSameColorAsPlacedToken = 1;
 		for( int index = startingIndex; index != indexOfCurrentlyPlacedToken && isWithinBounds(rowOfTokensWhereTokenIsPlaced, index); index += direction )
 		{
-			if( areOfDifferentColors(colorOfPlacedToken, rowOfTokensWhereTokenIsPlaced[index]) ) break;
+			if( areOfDifferentColors(tokenOfPlacedToken, rowOfTokensWhereTokenIsPlaced[index]) ) break;
 			numberOfTokensHavingTheSameColorAsPlacedToken++;
-			if( numberOfTokensHavingTheSameColorAsPlacedToken == 4 ) throw new GameIsOverException(colorOfPlacedToken + " wins!");
+			if( numberOfTokensHavingTheSameColorAsPlacedToken == 4 ) throw new GameIsOverException(tokenOfPlacedToken + " wins!");
 		}
 	}
 
-	private boolean isWithinBounds(Color[] rowOfTokensWhereTokenIsPlaced, int index)
+	private boolean isWithinBounds(Token[] rowOfTokensWhereTokenIsPlaced, int index)
 	{
 		return index >= 0 && index < rowOfTokensWhereTokenIsPlaced.length;
 	}
 
-	private boolean areOfDifferentColors(Color colorOfTokenPlaced, Color colorOfConnectingToken)
+	private boolean areOfDifferentColors(Token tokenOfTokenPlaced, Token tokenOfConnectingToken)
 	{
-		return colorOfTokenPlaced != colorOfConnectingToken;
+		return tokenOfTokenPlaced != tokenOfConnectingToken;
 	}
 
 	@Override

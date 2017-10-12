@@ -16,8 +16,8 @@ public class GridTest
 		int numberOfRows = 6;
 		int numberOfColumns = 7;
 		grid = new Grid(numberOfRows, numberOfColumns);
-		player1Token = new Token(Color.BLUE);
-		player2Token = new Token(Color.YELLOW);
+		player1Token = Token.BLUE;
+		player2Token = Token.YELLOW;
 	}
 
 	@Test

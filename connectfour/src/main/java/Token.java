@@ -1,20 +1,18 @@
-class Token
+public enum Token
 {
-	private final Color color;
-
-	public Token(Color color)
-	{
-		this.color = color;
-	}
+	BLUE, YELLOW, NONE;
 
 	@Override
 	public String toString()
 	{
-		return color.toString();
-	}
-
-	public Color getColor()
-	{
-		return color;
+		switch( this )
+		{
+			case BLUE:
+				return "BLUE";
+			case YELLOW:
+				return "YELLOW";
+			default:
+				return "NIL";
+		}
 	}
 }

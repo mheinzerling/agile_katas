@@ -35,9 +35,9 @@ class Column
 		return currentIndex;
 	}
 
-	public Color getColorOfTokenPlacedIn(int rowNumber)
+	public Token getColorOfTokenPlacedIn(int rowNumber)
 	{
-		if( tokenRows.get(rowNumber) == null ) return Color.NULL_COLOR;
-		return tokenRows.get(rowNumber).getColor();
+		if( tokenRows.get(rowNumber) == null ) return Token.NONE;
+		return tokenRows.get(rowNumber);
 	}
 }
