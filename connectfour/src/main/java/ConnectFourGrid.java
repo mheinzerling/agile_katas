@@ -37,10 +37,10 @@ class ConnectFourGrid
 		return gameTokenColors;
 	}
 
-	public int putTokenInColumn(GameToken gameToken, int columnNumber) throws GameIsOverException
+	public int put(GameToken token, int column)
 	{
-		checkIfColumnExists(columnNumber);
-		return connectFourColumns.get(columnNumber).place(gameToken);
+		checkIfColumnExists(column);
+		return connectFourColumns.get(column).place(token);
 	}
 
 	private void checkIfColumnExists(int columnNumber)

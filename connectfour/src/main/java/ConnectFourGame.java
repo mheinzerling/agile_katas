@@ -9,7 +9,7 @@ class ConnectFourGame
 
 	public void putTokenInColumn(GameToken gameToken, int columnNumber) throws GameIsOverException
 	{
-		int rowWhereTokenIsPlaced = connectFourGrid.putTokenInColumn(gameToken, columnNumber);
+		int rowWhereTokenIsPlaced = connectFourGrid.put(gameToken, columnNumber);
 		checkIfGameIsOverByPlacingTokenIn(columnNumber, rowWhereTokenIsPlaced);
 	}
 

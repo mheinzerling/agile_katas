@@ -84,14 +84,14 @@ public class ConnectFourGridTest
 		placePlayer2TokenIn(columnNumber);
 	}
 
-	private void placePlayer2TokenIn(int columnNumber) throws GameIsOverException
+	private void placePlayer2TokenIn(int columnNumber)
 	{
-		connectFourGrid.putTokenInColumn(player2Token, columnNumber);
+		connectFourGrid.put(player2Token, columnNumber);
 	}
 
-	private void placePlayer1TokenIn(int columnNumber) throws GameIsOverException
+	private void placePlayer1TokenIn(int columnNumber)
 	{
-		connectFourGrid.putTokenInColumn(player1Token, columnNumber);
+		connectFourGrid.put(player1Token, columnNumber);
 	}
 
 	@Test
