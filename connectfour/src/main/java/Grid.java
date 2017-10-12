@@ -1,16 +1,14 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 class Grid
 {
-	private final List<Column> columns;
+	private final Column[] columns;
 
 	public Grid(int numberOfRows, int numberOfColumns)
 	{
-		columns = new ArrayList<Column>(numberOfColumns);
+		columns = new Column[numberOfColumns];
 		for( int i = 0; i < numberOfColumns; i++ )
-			columns.add(new Column(numberOfRows));
+			columns[i] = new Column(numberOfRows);
 	}
 
 	public Token[] getRightDiagonalOfTokensAlong(int columnWhereTokenIsPlaced, int rowWhereTokenIsPlaced)
@@ -38,12 +36,12 @@ class Grid
 	public int put(Token token, int column) throws FullColumnException, NonexistentColumnException
 	{
 		checkIfColumnExists(column);
-		return columns.get(column).place(token);
+		return columns[column].place(token);
 	}
 
 	private void checkIfColumnExists(int columnNumber) throws NonexistentColumnException
 	{
-		if( columnNumber < 0 || columnNumber >= columns.size() ) throw new NonexistentColumnException("Column does not exist");
+		if( columnNumber < 0 || columnNumber >= columns.length ) throw new NonexistentColumnException("Column does not exist");
 	}
 
 	public Token[] getColumnOfTokensAlong(int columnNumber)
@@ -58,7 +56,7 @@ class Grid
 
 	private Token getColorOfTokenPlacedIn(int rowWhereTokenIsPlaced, int columnNumber)
 	{
-		return columns.get(columnNumber).getToken(rowWhereTokenIsPlaced);
+		return columns[columnNumber].getToken(rowWhereTokenIsPlaced);
 	}
 
 	public Token[] getRowOfTokensAlong(int rowWhereTokenIsPlaced)
@@ -74,17 +72,17 @@ class Grid
 	public int getNumberOfTokensIn(int columnNumber) throws NonexistentColumnException
 	{
 		checkIfColumnExists(columnNumber);
-		return columns.get(columnNumber).getCurrentNumberOfTokens();
+		return columns[columnNumber].getCurrentNumberOfTokens();
 	}
 
 	public int getNumberOfRows()
 	{
-		return columns.get(0).getNumberOfRows();
+		return columns[0].getNumberOfRows();
 	}
 
 	public int getNumberOfColumns()
 	{
-		return columns.size();
+		return columns.length;
 	}
 
 	@Override
