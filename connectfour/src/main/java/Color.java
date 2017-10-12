@@ -1,4 +1,4 @@
-public enum GameTokenColor
+public enum Color
 {
 	BLUE, YELLOW, NULL_COLOR;
 

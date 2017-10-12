@@ -4,20 +4,20 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ConnectFourGridTest
+public class GridTest
 {
-	private GameToken       player1Token;
-	private GameToken       player2Token;
-	private ConnectFourGrid connectFourGrid;
+	private Token player1Token;
+	private Token player2Token;
+	private Grid  grid;
 
 	@Before
 	public void setUp() throws Exception
 	{
 		int numberOfRows = 6;
 		int numberOfColumns = 7;
-		connectFourGrid = new ConnectFourGrid(numberOfRows, numberOfColumns);
-		player1Token = new GameToken(GameTokenColor.BLUE);
-		player2Token = new GameToken(GameTokenColor.YELLOW);
+		grid = new Grid(numberOfRows, numberOfColumns);
+		player1Token = new Token(Color.BLUE);
+		player2Token = new Token(Color.YELLOW);
 	}
 
 	@Test
@@ -25,8 +25,8 @@ public class ConnectFourGridTest
 	{
 		int expectedNumberOfRows = 6;
 		int expectedNumberOfColumns = 7;
-		assertTrue(expectedNumberOfRows == connectFourGrid.getNumberOfRows());
-		assertTrue(expectedNumberOfColumns == connectFourGrid.getNumberOfColumns());
+		assertTrue(expectedNumberOfRows == grid.getNumberOfRows());
+		assertTrue(expectedNumberOfColumns == grid.getNumberOfColumns());
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class ConnectFourGridTest
 		int nonExistentColumn = 7;
 		try
 		{
-			connectFourGrid.getNumberOfTokensIn(nonExistentColumn);
+			grid.getNumberOfTokensIn(nonExistentColumn);
 			fail();
 		}
 		catch( NonexistentColumnException ignored )
@@ -48,7 +48,7 @@ public class ConnectFourGridTest
 	{
 		int columnNumber = 1;
 		placePlayer1TokenIn(columnNumber);
-		assertTrue(connectFourGrid.getNumberOfTokensIn(columnNumber) == 1);
+		assertTrue(grid.getNumberOfTokensIn(columnNumber) == 1);
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class ConnectFourGridTest
 	{
 		int columnNumber = 5;
 		alternatelyPlaceSixTokensIn(columnNumber);
-		assertTrue(connectFourGrid.getNumberOfTokensIn(columnNumber) == 6);
+		assertTrue(grid.getNumberOfTokensIn(columnNumber) == 6);
 	}
 
 	@Test
@@ -86,12 +86,12 @@ public class ConnectFourGridTest
 
 	private void placePlayer2TokenIn(int columnNumber)
 	{
-		connectFourGrid.put(player2Token, columnNumber);
+		grid.put(player2Token, columnNumber);
 	}
 
 	private void placePlayer1TokenIn(int columnNumber)
 	{
-		connectFourGrid.put(player1Token, columnNumber);
+		grid.put(player1Token, columnNumber);
 	}
 
 	@Test

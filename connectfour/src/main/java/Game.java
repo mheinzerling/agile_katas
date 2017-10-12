@@ -1,31 +1,31 @@
-class ConnectFourGame
+class Game
 {
-	private final ConnectFourGrid connectFourGrid;
+	private final Grid grid;
 
-	public ConnectFourGame(int numberOfRows, int numberOfColumns)
+	public Game(int numberOfRows, int numberOfColumns)
 	{
-		connectFourGrid = new ConnectFourGrid(numberOfRows, numberOfColumns);
+		grid = new Grid(numberOfRows, numberOfColumns);
 	}
 
-	public void putTokenInColumn(GameToken gameToken, int columnNumber) throws GameIsOverException
+	public void putTokenInColumn(Token token, int columnNumber) throws GameIsOverException
 	{
-		int rowWhereTokenIsPlaced = connectFourGrid.put(gameToken, columnNumber);
+		int rowWhereTokenIsPlaced = grid.put(token, columnNumber);
 		checkIfGameIsOverByPlacingTokenIn(columnNumber, rowWhereTokenIsPlaced);
 	}
 
 	private void checkIfGameIsOverByPlacingTokenIn(int columnNumber, int rowWhereTokenIsPlaced) throws GameIsOverException
 	{
-		GameTokenColor[] connectingTokens = connectFourGrid.getRowOfTokensAlong(rowWhereTokenIsPlaced);
+		Color[] connectingTokens = grid.getRowOfTokensAlong(rowWhereTokenIsPlaced);
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, columnNumber);
-		connectingTokens = connectFourGrid.getColumnOfTokensAlong(columnNumber);
+		connectingTokens = grid.getColumnOfTokensAlong(columnNumber);
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, rowWhereTokenIsPlaced);
-		connectingTokens = connectFourGrid.getLeftDiagonalOfTokensAlong(columnNumber, rowWhereTokenIsPlaced);
+		connectingTokens = grid.getLeftDiagonalOfTokensAlong(columnNumber, rowWhereTokenIsPlaced);
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, columnNumber);
-		connectingTokens = connectFourGrid.getRightDiagonalOfTokensAlong(columnNumber, rowWhereTokenIsPlaced);
+		connectingTokens = grid.getRightDiagonalOfTokensAlong(columnNumber, rowWhereTokenIsPlaced);
 		checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(connectingTokens, columnNumber);
 	}
 
-	private void checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(GameTokenColor[] connectingTokensIncludingPlacedToken,
+	private void checkIfThereAreFourConnectingTokensOfTheSameColorInConnectingTokensAlong(Color[] connectingTokensIncludingPlacedToken,
 		int indexOfPlacedToken) throws GameIsOverException
 	{
 		final int LEFT = 1;
@@ -34,11 +34,11 @@ class ConnectFourGame
 		checkIfThereAreFourConnectingTokensOfSameColorOnSide(connectingTokensIncludingPlacedToken, indexOfPlacedToken, RIGHT);
 	}
 
-	private void checkIfThereAreFourConnectingTokensOfSameColorOnSide(GameTokenColor[] rowOfTokensWhereTokenIsPlaced, int indexOfCurrentlyPlacedToken,
+	private void checkIfThereAreFourConnectingTokensOfSameColorOnSide(Color[] rowOfTokensWhereTokenIsPlaced, int indexOfCurrentlyPlacedToken,
 		int direction) throws GameIsOverException
 	{
 		int startingIndex = indexOfCurrentlyPlacedToken + 3 * -direction;
-		GameTokenColor colorOfPlacedToken = rowOfTokensWhereTokenIsPlaced[indexOfCurrentlyPlacedToken];
+		Color colorOfPlacedToken = rowOfTokensWhereTokenIsPlaced[indexOfCurrentlyPlacedToken];
 		int numberOfTokensHavingTheSameColorAsPlacedToken = 1;
 		for( int index = startingIndex; index != indexOfCurrentlyPlacedToken && isWithinBounds(rowOfTokensWhereTokenIsPlaced, index); index += direction )
 		{
@@ -48,12 +48,12 @@ class ConnectFourGame
 		}
 	}
 
-	private boolean isWithinBounds(GameTokenColor[] rowOfTokensWhereTokenIsPlaced, int index)
+	private boolean isWithinBounds(Color[] rowOfTokensWhereTokenIsPlaced, int index)
 	{
 		return index >= 0 && index < rowOfTokensWhereTokenIsPlaced.length;
 	}
 
-	private boolean areOfDifferentColors(GameTokenColor colorOfTokenPlaced, GameTokenColor colorOfConnectingToken)
+	private boolean areOfDifferentColors(Color colorOfTokenPlaced, Color colorOfConnectingToken)
 	{
 		return colorOfTokenPlaced != colorOfConnectingToken;
 	}
@@ -61,6 +61,6 @@ class ConnectFourGame
 	@Override
 	public String toString()
 	{
-		return String.valueOf(connectFourGrid);
+		return String.valueOf(grid);
 	}
 }
