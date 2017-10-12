@@ -1,6 +1,6 @@
-public class ConnectFourGame
+class ConnectFourGame
 {
-	private ConnectFourGrid connectFourGrid;
+	private final ConnectFourGrid connectFourGrid;
 
 	public ConnectFourGame(int numberOfRows, int numberOfColumns)
 	{

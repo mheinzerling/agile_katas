@@ -1,4 +1,4 @@
-public class GameIsOverException extends Exception
+class GameIsOverException extends Exception
 {
 	public GameIsOverException(String message)
 	{

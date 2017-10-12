@@ -1,4 +1,4 @@
-public class NonexistentColumnException extends IllegalArgumentException
+class NonexistentColumnException extends IllegalArgumentException
 {
 	public NonexistentColumnException(String message)
 	{

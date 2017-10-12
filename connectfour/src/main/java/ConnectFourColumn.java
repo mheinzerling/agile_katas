@@ -1,10 +1,10 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class ConnectFourColumn
+class ConnectFourColumn
 {
-	private List<GameToken> gameTokenRows;
-	private int             currentIndex;
+	private final List<GameToken> gameTokenRows;
+	private       int             currentIndex;
 
 	public ConnectFourColumn(int numberOfRows)
 	{

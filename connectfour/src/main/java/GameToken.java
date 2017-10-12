@@ -1,6 +1,6 @@
-public class GameToken
+class GameToken
 {
-	private GameTokenColor tokenColor;
+	private final GameTokenColor tokenColor;
 
 	public GameToken(GameTokenColor gameTokenColor)
 	{

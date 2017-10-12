@@ -1,9 +1,9 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class ConnectFourGrid
+class ConnectFourGrid
 {
-	private List<ConnectFourColumn> connectFourColumns;
+	private final List<ConnectFourColumn> connectFourColumns;
 
 	public ConnectFourGrid(int numberOfRows, int numberOfColumns)
 	{
