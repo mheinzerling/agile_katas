@@ -7,7 +7,7 @@ class Game
 		grid = new Grid(numberOfRows, numberOfColumns);
 	}
 
-	public void putTokenInColumn(Token token, int columnNumber) throws GameIsOverException
+	public void putTokenInColumn(Token token, int columnNumber) throws GameIsOverException, FullColumnException, NonexistentColumnException
 	{
 		int rowWhereTokenIsPlaced = grid.put(token, columnNumber);
 		checkIfGameIsOverByPlacingTokenIn(columnNumber, rowWhereTokenIsPlaced);

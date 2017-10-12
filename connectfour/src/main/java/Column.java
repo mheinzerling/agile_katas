@@ -17,7 +17,7 @@ class Column
 		return tokenRows.size();
 	}
 
-	public int place(Token token)
+	public int place(Token token) throws FullColumnException
 	{
 		if( columnIsFull() ) throw new FullColumnException("Column is full!");
 		tokenRows.set(currentIndex, token);

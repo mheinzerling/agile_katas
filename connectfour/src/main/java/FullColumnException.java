@@ -1,4 +1,4 @@
-class FullColumnException extends IllegalArgumentException
+class FullColumnException extends Exception
 {
 	public FullColumnException(String message)
 	{

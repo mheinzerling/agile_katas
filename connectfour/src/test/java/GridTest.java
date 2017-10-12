@@ -74,7 +74,7 @@ public class GridTest
 		}
 	}
 
-	private void alternatelyPlaceSixTokensIn(int columnNumber) throws GameIsOverException
+	private void alternatelyPlaceSixTokensIn(int columnNumber) throws GameIsOverException, FullColumnException, NonexistentColumnException
 	{
 		placePlayer1TokenIn(columnNumber);
 		placePlayer2TokenIn(columnNumber);
@@ -84,12 +84,12 @@ public class GridTest
 		placePlayer2TokenIn(columnNumber);
 	}
 
-	private void placePlayer2TokenIn(int columnNumber)
+	private void placePlayer2TokenIn(int columnNumber) throws FullColumnException, NonexistentColumnException
 	{
 		grid.put(player2Token, columnNumber);
 	}
 
-	private void placePlayer1TokenIn(int columnNumber)
+	private void placePlayer1TokenIn(int columnNumber) throws FullColumnException, NonexistentColumnException
 	{
 		grid.put(player1Token, columnNumber);
 	}

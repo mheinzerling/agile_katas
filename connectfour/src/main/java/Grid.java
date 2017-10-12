@@ -35,13 +35,13 @@ class Grid
 		return tokens;
 	}
 
-	public int put(Token token, int column)
+	public int put(Token token, int column) throws FullColumnException, NonexistentColumnException
 	{
 		checkIfColumnExists(column);
 		return columns.get(column).place(token);
 	}
 
-	private void checkIfColumnExists(int columnNumber)
+	private void checkIfColumnExists(int columnNumber) throws NonexistentColumnException
 	{
 		if( columnNumber < 0 || columnNumber >= columns.size() ) throw new NonexistentColumnException("Column does not exist");
 	}
@@ -71,7 +71,7 @@ class Grid
 		return tokens;
 	}
 
-	public int getNumberOfTokensIn(int columnNumber)
+	public int getNumberOfTokensIn(int columnNumber) throws NonexistentColumnException
 	{
 		checkIfColumnExists(columnNumber);
 		return columns.get(columnNumber).getCurrentNumberOfTokens();
