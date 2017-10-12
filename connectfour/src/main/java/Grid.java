@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,11 +8,9 @@ class Grid
 
 	public Grid(int numberOfRows, int numberOfColumns)
 	{
-		columns = Arrays.asList(new Column[numberOfColumns]);
-		for( int i = 0; i < columns.size(); i++ )
-		{
-			columns.set(i, new Column(numberOfRows));
-		}
+		columns = new ArrayList<Column>(numberOfColumns);
+		for( int i = 0; i < numberOfColumns; i++ )
+			columns.add(new Column(numberOfRows));
 	}
 
 	public Color[] getRightDiagonalOfTokensAlong(int columnWhereTokenIsPlaced, int rowWhereTokenIsPlaced)
@@ -20,8 +19,7 @@ class Grid
 		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced;
 			 rowNumber >= 0 && columnNumber < getNumberOfColumns(); rowNumber--, columnNumber++ )
 			colors[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
-		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced;
-			 rowNumber < getNumberOfRows() && columnNumber >= 0; rowNumber++, columnNumber-- )
+		for( int rowNumber = rowWhereTokenIsPlaced, columnNumber = columnWhereTokenIsPlaced; rowNumber < getNumberOfRows() && columnNumber >= 0; rowNumber++, columnNumber-- )
 			colors[columnNumber] = getColorOfTokenPlacedIn(rowNumber, columnNumber);
 		return colors;
 	}
